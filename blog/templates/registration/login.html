@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+
+
+{% block body_block %}
+<div class="jumbotron">
+  <h2>Please Login:</h2>
+  <h3>(Must be a superuser,please check with site admin)</h3>
+
+  {% if form.errors %}
+    <p>YOU'RE USERNAME AND PASSWORD DIDN'T MATCH!PLEASE TRY AGAIN</p>
+  {% endif %}
+
+  <form  action="{% url 'login' %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit"  value="Login" class="btn btn-primary">
+    <input type="hidden" name="next" value="{{next}}">
+
+  </form>
+</div>
+
+{% endblock %}
